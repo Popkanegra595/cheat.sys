@@ -1,15 +1,15 @@
 [
   {
-    "name": "Spectral Aim Pro",
-    "game": "Counter-Strike 2",
+    "name": "Pulse Visual",
+    "game": "Minecraft",
     "file": "Pulse-Visual.jar",
-    "image": "test.png",
+    "image": "pl.png",
     "badge": "UNDETECTED",
-    "version": "v2.4.1",
+    "version": "1.21.4",
     "features": [
-      "Aimbot с настройкой FOV",
-      "ESP — скелет и здоровье",
-      "No-recoil + No-spread"
+      "мод открывает доступ к мощному набору функций, которые выводят комфорт и стиль игры на новый уровень.",
+      "мод полностью совместим с популярными анти-чит системами на серверах.",
+      "Выбирай: сочный HD-дизайн клиента или мрачная классика Minecraft."
     ]
   },
   {
