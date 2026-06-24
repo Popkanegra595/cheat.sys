@@ -1,0 +1,28 @@
+[
+  {
+    "name": "Spectral Aim Pro",
+    "game": "Counter-Strike 2",
+    "file": "spectral-aim-pro.jar",
+    "image": "cs2.jpg",
+    "badge": "UNDETECTED",
+    "version": "v2.4.1",
+    "features": [
+      "Aimbot с настройкой FOV",
+      "ESP — скелет и здоровье",
+      "No-recoil + No-spread"
+    ]
+  },
+  {
+    "name": "Phantom Vision",
+    "game": "Valorant",
+    "file": "phantom-vision.jar",
+    "image": "valorant.jpg",
+    "badge": "HOT",
+    "version": "v1.9.7",
+    "features": [
+      "Silent aimbot",
+      "Wallhack + Radar hack",
+      "Anti-Vanguard bypass"
+    ]
+  }
+]
