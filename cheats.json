@@ -1,41 +1,162 @@
 [
   {
-    "name": "Spectral Aim Pro",
-    "game": "Counter-Strike 2",
-    "file": "spectral-aim-pro.jar",
-    "image": "cs2.jpg",
-    "logo": "cs2-logo.jpg",
+    "name": "Pulse Visual Crack",
+    "game": "Minecraft",
+    "file": "PulseVisualCrack.jar",
+    "image": "pulse.jpg",
+    "logo": "pulse-logo.jpg",
     "badge": "UNDETECTED",
-    "version": "v2.4.1",
+    "version": "v1.0.0",
+    "type": "JAR",
+    "status": "WORKING",
+    "description": "Мощный визуальный чит для Minecraft с ESP, трейсерами и подсветкой игроков. Работает на большинстве версий.",
+    "features": [
+      "Player ESP — подсветка игроков сквозь стены",
+      "Tracers — линии до игроков",
+      "Item ESP — видишь дроп на земле",
+      "Fullbright — всегда светло",
+      "Minimap hack",
+      "No-fog"
+    ],
+    "screenshots": ["pulse-1.jpg", "pulse-2.jpg"],
+    "install": [
+      {
+        "title": "Установи Java",
+        "desc": "Убедись что установлена Java 17 или выше. Скачать: java.com"
+      },
+      {
+        "title": "Установи Fabric или Forge",
+        "desc": "Чит работает как мод. Установи нужный загрузчик под свою версию Minecraft."
+      },
+      {
+        "title": "Кинь .jar в папку mods",
+        "desc": "Скопируй файл PulseVisualCrack.jar в папку .minecraft/mods/",
+        "code": "C:\\Users\\ТЫ\\.minecraft\\mods\\"
+      },
+      {
+        "title": "Запусти Minecraft",
+        "desc": "Выбери профиль Fabric/Forge в лаунчере и запускай. Чит загрузится автоматически."
+      }
+    ]
+  },
+  {
+    "name": "SharkHack",
+    "game": "Counter-Strike 2",
+    "file": "SharkHack.jar",
+    "image": "shark.jpg",
+    "logo": "shark-logo.jpg",
+    "badge": "HOT",
+    "version": "v3.2.1",
     "type": "EXTERNAL",
     "status": "WORKING",
-    "description": "Мощный внешний чит для CS2 с продвинутым аймботом и ESP. Не требует прав администратора.",
+    "description": "Внешний чит для CS2 с аймботом и ESP. Обходит VAC и стандартные античит системы.",
     "features": [
       "Aimbot с настройкой FOV и smooth",
-      "ESP — скелет, здоровье, дистанция",
-      "No-recoil + No-spread",
-      "Triggerbot с задержкой",
-      "Radar hack",
-      "Bhop assist"
+      "Player ESP — скелет и здоровье",
+      "Bomb ESP — видишь бомбу всегда",
+      "No-recoil патч",
+      "Triggerbot",
+      "Radar hack"
     ],
-    "screenshots": ["cs2-1.jpg", "cs2-2.jpg", "cs2-3.jpg"],
+    "screenshots": ["shark-1.jpg", "shark-2.jpg"],
     "install": [
       {
         "title": "Отключи антивирус",
-        "desc": "Добавь папку с файлом в исключения Windows Defender или временно отключи антивирус."
+        "desc": "Добавь папку с файлом в исключения Windows Defender или временно отключи."
       },
       {
-        "title": "Запусти игру",
-        "desc": "Сначала запусти CS2 и дождись главного меню."
+        "title": "Запусти CS2",
+        "desc": "Сначала открой игру и дождись главного меню."
       },
       {
-        "title": "Запусти чит от администратора",
-        "desc": "ПКМ по файлу → Запуск от имени администратора."
+        "title": "Запусти SharkHack от администратора",
+        "desc": "ПКМ по файлу → Запуск от имени администратора.",
+        "code": "ПКМ → Запуск от имени администратора"
       },
       {
-        "title": "Дождись инжекции",
-        "desc": "В консоли чита появится надпись INJECTED. Нажми INSERT для открытия меню.",
-        "code": "> INJECTED SUCCESSFULLY"
+        "title": "Открой меню",
+        "desc": "После инжекции нажми INSERT для открытия меню чита.",
+        "code": "> INJECTED SUCCESSFULLY — нажми INSERT"
+      }
+    ]
+  },
+  {
+    "name": "Delta Client",
+    "game": "Minecraft",
+    "file": "Delta.jar",
+    "image": "delta.jpg",
+    "logo": "delta-logo.jpg",
+    "badge": "NEW",
+    "version": "v2.5.0",
+    "type": "CLIENT",
+    "status": "WORKING",
+    "description": "Продвинутый чит-клиент для Minecraft с огромным количеством модулей. Поддерживает анти-кик и обход NoCheatPlus.",
+    "features": [
+      "KillAura — автоатака ближайших врагов",
+      "Bhop — прыжки с ускорением",
+      "Scaffold — автоматическая постройка",
+      "AntiKnockback — игнор отбрасывания",
+      "FastPlace — быстрая установка блоков",
+      "Nuker — мгновенный снос блоков"
+    ],
+    "screenshots": ["delta-1.jpg", "delta-2.jpg"],
+    "install": [
+      {
+        "title": "Установи Java 8",
+        "desc": "Delta работает на Java 8. Скачай именно эту версию с java.com"
+      },
+      {
+        "title": "Запусти .jar напрямую",
+        "desc": "Дважды кликни по Delta.jar. Откроется собственный лаунчер клиента."
+      },
+      {
+        "title": "Войди в аккаунт",
+        "desc": "Введи никнейм (для пиратки) или данные аккаунта Minecraft."
+      },
+      {
+        "title": "Выбери сервер и играй",
+        "desc": "В игре нажми RSHIFT для открытия меню модулей.",
+        "code": "Меню модулей: RSHIFT"
+      }
+    ]
+  },
+  {
+    "name": "Celestial Client",
+    "game": "Minecraft 1.16.5",
+    "file": "CelestialClient.jar",
+    "image": "celestial.jpg",
+    "logo": "celestial-logo.jpg",
+    "badge": "UPDATED",
+    "version": "v4.1.2",
+    "type": "LAUNCHER",
+    "status": "WORKING",
+    "description": "Лаунчер-клиент для Minecraft 1.16.5 с встроенными модулями, оптимизацией FPS и поддержкой пиратских аккаунтов.",
+    "features": [
+      "Встроенный аймбот и KillAura",
+      "ESP игроков, мобов и предметов",
+      "OptiFine встроен — буст FPS",
+      "Поддержка пиратских аккаунтов",
+      "Scaffold и AutoBridge",
+      "Работает на 1.16.5"
+    ],
+    "screenshots": ["celestial-1.jpg", "celestial-2.jpg"],
+    "install": [
+      {
+        "title": "Скачай и запусти .jar",
+        "desc": "Дважды кликни по CelestialClient.jar. Если не открывается — ПКМ → Открыть с помощью → Java."
+      },
+      {
+        "title": "Выбери версию 1.16.5",
+        "desc": "В лаунчере выбери версию Minecraft 1.16.5 и нажми Play."
+      },
+      {
+        "title": "Войди в игру",
+        "desc": "Для пиратки введи любой никнейм. Лицензия не требуется."
+      },
+      {
+        "title": "Открой меню читов",
+        "desc": "В игре нажми RCTRL или RSHIFT для открытия панели модулей.",
+        "code": "Панель модулей: RCTRL / RSHIFT"
       }
     ]
   }
