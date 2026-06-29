@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CHEAT.SYS — Loading...</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=VT323&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --green:     #00ff41;
+      --green-dim: #00aa2a;
+      --bg:        #000;
+      --surface:   #080808;
+      --surface2:  #0d0d0d;
+      --text:      #c8c8c8;
+      --white:     #fff;
+      --glow:      0 0 8px #00ff41, 0 0 24px #00ff4166;
+      --glow-sm:   0 0 4px #00ff41, 0 0 12px #00ff4144;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Share Tech Mono', monospace;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,.13) 2px, rgba(0,0,0,.13) 4px);
+      pointer-events: none;
+      z-index: 9999;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* ── HEADER ── */
+    header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 32px;
+      border-bottom: 1px solid var(--green-dim);
+      background: rgba(0,255,65,.03);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .logo { font-family: 'VT323', monospace; font-size: 1.9rem; color: var(--green); text-shadow: var(--glow); letter-spacing: 4px; text-decoration: none; }
+    .logo span { color: var(--white); }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: #444; font-size: .72rem; letter-spacing: 2px;
+      text-decoration: none; border: 1px solid #1a1a1a;
+      padding: 7px 16px; border-radius: 2px;
+      transition: color .2s, border-color .2s;
+    }
+    .back-btn:hover { color: var(--green); border-color: var(--green-dim); }
+
+    /* ── MAIN LAYOUT ── */
+    .page { max-width: 1100px; margin: 0 auto; padding: 40px 32px 80px; }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb { font-size: .65rem; color: #333; letter-spacing: 2px; margin-bottom: 28px; }
+    .breadcrumb a { color: #444; text-decoration: none; }
+    .breadcrumb a:hover { color: var(--green); }
+    .breadcrumb span { color: var(--green); }
+
+    /* ── TOP SECTION ── */
+    .top { display: grid; grid-template-columns: 1fr 360px; gap: 32px; margin-bottom: 48px; }
+    @media(max-width:800px){ .top { grid-template-columns: 1fr; } }
+
+    /* ── GALLERY ── */
+    .gallery { display: flex; flex-direction: column; gap: 12px; }
+    .gallery__main {
+      position: relative;
+      width: 100%; aspect-ratio: 16/9;
+      background: #0a0a0a;
+      border: 1px solid #1a1a1a;
+      overflow: hidden;
+      border-radius: 3px;
+    }
+    .gallery__main img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: grayscale(.2) contrast(1.1);
+      cursor: zoom-in;
+      transition: filter .3s;
+    }
+    .gallery__main img:hover { filter: grayscale(0) contrast(1.05); }
+    .gallery__main .placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'VT323', monospace; font-size: 4rem; color: #1a1a1a;
+      background: repeating-linear-gradient(45deg, #080808 0, #080808 10px, #0a0a0a 10px, #0a0a0a 20px);
+    }
+    .gallery__scan {
+      position: absolute; inset: 0; pointer-events: none;
+      background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,255,65,.025) 3px, rgba(0,255,65,.025) 4px);
+    }
+    .gallery__nav {
+      position: absolute; bottom: 12px; right: 12px;
+      display: flex; gap: 6px; z-index: 2;
+    }
+    .gallery__nav button {
+      background: rgba(0,0,0,.7); border: 1px solid #333;
+      color: var(--green); font-family: 'Share Tech Mono', monospace;
+      font-size: .7rem; padding: 5px 10px; cursor: pointer;
+      border-radius: 2px; transition: border-color .2s, box-shadow .2s;
+    }
+    .gallery__nav button:hover { border-color: var(--green); box-shadow: var(--glow-sm); }
+    .gallery__thumbs { display: flex; gap: 8px; flex-wrap: wrap; }
+    .gallery__thumb {
+      width: 72px; height: 48px;
+      border: 1px solid #1a1a1a;
+      overflow: hidden; border-radius: 2px; cursor: pointer;
+      flex-shrink: 0;
+      transition: border-color .2s;
+    }
+    .gallery__thumb.active { border-color: var(--green); box-shadow: var(--glow-sm); }
+    .gallery__thumb img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(.5); }
+    .gallery__thumb:hover { border-color: var(--green-dim); }
+
+    /* ── SIDEBAR ── */
+    .sidebar { display: flex; flex-direction: column; gap: 16px; }
+
+    .product-logo {
+      width: 100%; aspect-ratio: 1;
+      max-height: 140px;
+      background: #0a0a0a;
+      border: 1px solid #1a1a1a;
+      border-radius: 3px;
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .product-logo img { width: 100%; height: 100%; object-fit: contain; filter: grayscale(.3); }
+    .product-logo .logo-placeholder {
+      font-family: 'VT323', monospace; font-size: 3.5rem;
+      color: var(--green); text-shadow: var(--glow);
+    }
+
+    .info-box {
+      background: var(--surface);
+      border: 1px solid #1a1a1a;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .info-box__bar {
+      display: flex; align-items: center; gap: 6px;
+      padding: 8px 14px; background: var(--surface2);
+      border-bottom: 1px solid #181818;
+      font-size: .62rem; color: #333; letter-spacing: 2px;
+    }
+    .info-box__dot { width: 8px; height: 8px; border-radius: 50%; }
+    .info-box__dot:nth-child(1){background:#3a3a3a}
+    .info-box__dot:nth-child(2){background:#2a2a2a}
+    .info-box__dot:nth-child(3){background:#1e1e1e}
+    .info-box__body { padding: 16px; }
+
+    .product-name {
+      font-family: 'VT323', monospace;
+      font-size: 2rem; color: var(--white);
+      text-shadow: 0 0 20px rgba(255,255,255,.1);
+      margin-bottom: 4px; line-height: 1.1;
+    }
+    .product-game { font-size: .68rem; color: #444; letter-spacing: 3px; margin-bottom: 14px; }
+    .product-badge {
+      display: inline-block;
+      border: 1px solid var(--green); color: var(--green);
+      font-size: .6rem; padding: 3px 10px;
+      letter-spacing: 3px; margin-bottom: 14px;
+      box-shadow: var(--glow-sm);
+    }
+    .product-desc { font-size: .73rem; color: #666; line-height: 1.9; margin-bottom: 16px; }
+
+    .meta-row { display: flex; justify-content: space-between; font-size: .63rem; margin-bottom: 6px; }
+    .meta-row .label { color: #333; letter-spacing: 1px; }
+    .meta-row .value { color: #555; }
+
+    .btn-dl-big {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      width: 100%; padding: 14px;
+      background: transparent; border: 1px solid var(--green);
+      color: var(--green);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .8rem; letter-spacing: 3px;
+      text-decoration: none; cursor: pointer;
+      border-radius: 2px; margin-top: 18px;
+      position: relative; overflow: hidden;
+      transition: color .2s, box-shadow .2s;
+    }
+    .btn-dl-big::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--green); transform: translateX(-100%);
+      transition: transform .25s ease; z-index: 0;
+    }
+    .btn-dl-big:hover::before { transform: translateX(0); }
+    .btn-dl-big:hover { color: #000; box-shadow: var(--glow); }
+    .btn-dl-big span, .btn-dl-big svg { position: relative; z-index: 1; }
+
+    /* ── SECTIONS ── */
+    .section { margin-bottom: 40px; }
+    .section__title {
+      font-family: 'VT323', monospace;
+      font-size: 1.5rem; color: var(--white);
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 20px;
+    }
+    .section__title::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(to right, #1c1c1c, transparent);
+    }
+
+    /* Features grid */
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+    .feature-item {
+      background: var(--surface);
+      border: 1px solid #141414;
+      border-radius: 2px;
+      padding: 12px 14px;
+      font-size: .72rem; color: #666;
+      display: flex; align-items: flex-start; gap: 10px;
+      transition: border-color .2s;
+    }
+    .feature-item:hover { border-color: #2a2a2a; }
+    .feature-item::before { content: '>'; color: var(--green); flex-shrink: 0; }
+
+    /* Install steps */
+    .steps { display: flex; flex-direction: column; gap: 12px; }
+    .step {
+      display: flex; gap: 16px; align-items: flex-start;
+      background: var(--surface);
+      border: 1px solid #141414;
+      border-radius: 2px; padding: 16px;
+    }
+    .step__num {
+      font-family: 'VT323', monospace;
+      font-size: 1.8rem; color: var(--green);
+      text-shadow: var(--glow-sm);
+      flex-shrink: 0; line-height: 1;
+      min-width: 32px;
+    }
+    .step__body {}
+    .step__title { font-size: .75rem; color: var(--white); margin-bottom: 5px; letter-spacing: 1px; }
+    .step__desc { font-size: .68rem; color: #555; line-height: 1.8; }
+    .step__code {
+      margin-top: 8px;
+      background: #000; border: 1px solid #1a1a1a;
+      border-radius: 2px; padding: 8px 12px;
+      font-size: .68rem; color: var(--green);
+      letter-spacing: 1px;
+    }
+
+    /* Warning box */
+    .warning {
+      border: 1px solid #2a1500;
+      background: rgba(255,100,0,.04);
+      border-radius: 2px; padding: 14px 16px;
+      font-size: .7rem; color: #664400; line-height: 1.8;
+      margin-bottom: 24px;
+    }
+    .warning b { color: #aa6600; }
+
+    /* ── LOADING / ERROR ── */
+    .state {
+      text-align: center; padding: 100px 20px;
+      font-size: .8rem; letter-spacing: 4px;
+    }
+    .state.loading { color: var(--green-dim); animation: blink 1s step-end infinite; }
+    .state.error { color: #444; }
+    .state.error a { color: var(--green-dim); }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      display: none; position: fixed; inset: 0; z-index: 1000;
+      background: rgba(0,0,0,.92); align-items: center; justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; border: 1px solid #222; }
+    .lightbox__close {
+      position: absolute; top: 20px; right: 28px;
+      color: #555; font-size: 2rem; cursor: pointer; line-height: 1;
+    }
+    .lightbox__close:hover { color: var(--green); }
+
+    @media(max-width:600px){
+      .page { padding: 24px 16px 60px; }
+      header { padding: 10px 16px; }
+      .features-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo"><span>[</span>CHEAT<span>.</span>SYS<span>]</span></a>
+  <a href="index.html" class="back-btn">
+    <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    BACK
+  </a>
+</header>
+
+<div class="page" id="page">
+  <div class="state loading">LOADING MODULE...</div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <div class="lightbox__close" onclick="closeLightbox()">✕</div>
+  <img id="lightboxImg" src="" alt=""/>
+</div>
+
+<script>
+const DL_ICON = `<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>`;
+
+// Получаем id из URL: product.html?id=0
+const params = new URLSearchParams(location.search);
+const itemId = parseInt(params.get('id') || '0');
+
+let currentImg = 0;
+let screenshots = [];
+
+function openLightbox(src) {
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeLightbox(); });
+
+function setMainImg(idx) {
+  currentImg = idx;
+  const main = document.getElementById('mainImg');
+  if (main && screenshots[idx]) {
+    main.src = screenshots[idx];
+  }
+  document.querySelectorAll('.gallery__thumb').forEach((t,i) => {
+    t.classList.toggle('active', i === idx);
+  });
+}
+
+function buildPage(item) {
+  const name    = item.name || item.file.replace(/\.[^.]+$/,'').replace(/[-_]/g,' ').toUpperCase();
+  const game    = item.game    || '';
+  const badge   = item.badge   || '';
+  const version = item.version || '';
+  const desc    = item.description || '';
+  const fileSrc = `files/${item.file}`;
+
+  // Скриншоты: item.screenshots = ["images/s1.jpg","images/s2.jpg",...]
+  // Если нет скриншотов, используем item.image
+  screenshots = [];
+  if (Array.isArray(item.screenshots) && item.screenshots.length) {
+    screenshots = item.screenshots.map(s => `images/${s}`);
+  } else if (item.image) {
+    screenshots = [`images/${item.image}`];
+  }
+
+  const logoSrc = item.logo ? `images/${item.logo}` : null;
+
+  // Шаги установки
+  const steps = Array.isArray(item.install) ? item.install : [
+    { title: 'Отключи антивирус', desc: 'Добавь папку с файлом в исключения или временно отключи антивирус. Чит может ложно срабатывать.' },
+    { title: 'Скачай файл', desc: 'Нажми кнопку DOWNLOAD ниже. Файл сохранится в папку Загрузки.' },
+    { title: 'Запусти игру', desc: 'Сначала запусти игру и дождись загрузки главного меню.' },
+    { title: 'Запусти чит от администратора', desc: 'ПКМ по файлу → Запуск от имени администратора. Дождись надписи INJECTED или аналогичной.' }
+  ];
+
+  const features = Array.isArray(item.features) ? item.features : [];
+
+  // Доп. мета
+  const meta = [];
+  if (version) meta.push({ label: 'VERSION', value: version });
+  if (item.type) meta.push({ label: 'TYPE', value: item.type });
+  if (item.status) meta.push({ label: 'STATUS', value: item.status });
+
+  // Галерея
+  const mainImgHtml = screenshots.length
+    ? `<img id="mainImg" src="${screenshots[0]}" alt="${name}" onclick="openLightbox(this.src)">`
+    : `<div class="placeholder">[NO PREVIEW]</div>`;
+
+  const thumbsHtml = screenshots.length > 1
+    ? screenshots.map((s,i) => `
+        <div class="gallery__thumb ${i===0?'active':''}" onclick="setMainImg(${i})">
+          <img src="${s}" alt="screenshot ${i+1}">
+        </div>`).join('')
+    : '';
+
+  const navHtml = screenshots.length > 1
+    ? `<div class="gallery__nav">
+        <button onclick="setMainImg((currentImg-1+${screenshots.length})%${screenshots.length})">◀</button>
+        <button onclick="setMainImg((currentImg+1)%${screenshots.length})">▶</button>
+       </div>` : '';
+
+  const logoHtml = logoSrc
+    ? `<img src="${logoSrc}" alt="logo" onerror="this.parentElement.innerHTML='<div class=logo-placeholder>${name[0]}</div>'">`
+    : `<div class="logo-placeholder">${name[0]}</div>`;
+
+  const metaHtml = meta.map(m => `
+    <div class="meta-row">
+      <span class="label">${m.label}</span>
+      <span class="value">${m.value}</span>
+    </div>`).join('');
+
+  const featuresHtml = features.length
+    ? `<div class="section">
+        <div class="section__title">FEATURES</div>
+        <div class="features-grid">
+          ${features.map(f => `<div class="feature-item">${f}</div>`).join('')}
+        </div>
+      </div>` : '';
+
+  const stepsHtml = steps.map((s, i) => `
+    <div class="step">
+      <div class="step__num">0${i+1}</div>
+      <div class="step__body">
+        <div class="step__title">${s.title}</div>
+        <div class="step__desc">${s.desc}</div>
+        ${s.code ? `<div class="step__code">${s.code}</div>` : ''}
+      </div>
+    </div>`).join('');
+
+  document.title = `CHEAT.SYS — ${name}`;
+
+  document.getElementById('page').innerHTML = `
+    <div class="breadcrumb">
+      <a href="index.html">HOME</a> / <span>${name}</span>
+    </div>
+
+    <div class="top">
+      <!-- ГАЛЕРЕЯ -->
+      <div class="gallery">
+        <div class="gallery__main">
+          ${mainImgHtml}
+          <div class="gallery__scan"></div>
+          ${navHtml}
+        </div>
+        ${thumbsHtml ? `<div class="gallery__thumbs">${thumbsHtml}</div>` : ''}
+      </div>
+
+      <!-- САЙДБАР -->
+      <div class="sidebar">
+        <div class="product-logo">${logoHtml}</div>
+
+        <div class="info-box">
+          <div class="info-box__bar">
+            <div class="info-box__dot"></div>
+            <div class="info-box__dot"></div>
+            <div class="info-box__dot"></div>
+            <span style="margin-left:6px">${item.file || 'module'}</span>
+          </div>
+          <div class="info-box__body">
+            ${game ? `<div class="product-game">${game}</div>` : ''}
+            <div class="product-name">${name}</div>
+            ${badge ? `<div class="product-badge">${badge}</div>` : ''}
+            ${desc ? `<div class="product-desc">${desc}</div>` : ''}
+            ${metaHtml}
+            <a href="${fileSrc}" class="btn-dl-big" download>
+              ${DL_ICON}<span>DOWNLOAD</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    ${featuresHtml}
+
+    <div class="section">
+      <div class="section__title">УСТАНОВКА</div>
+      <div class="warning">
+        <b>⚠ ВНИМАНИЕ:</b> Используй на свой страх и риск. Читы могут нарушать правила игры и приводить к бану аккаунта.
+      </div>
+      <div class="steps">${stepsHtml}</div>
+    </div>
+  `;
+}
+
+async function load() {
+  const page = document.getElementById('page');
+  try {
+    const res = await fetch('cheats.json?v=' + Date.now());
+    if (!res.ok) throw new Error('not found');
+    const items = await res.json();
+    const item = items[itemId];
+    if (!item) throw new Error('item not found');
+    buildPage(item);
+  } catch(e) {
+    page.innerHTML = `<div class="state error">
+      МОДУЛЬ НЕ НАЙДЕН<br><br>
+      <a href="index.html">← ВЕРНУТЬСЯ</a>
+    </div>`;
+  }
+}
+
+load();
+</script>
+</body>
+</html>

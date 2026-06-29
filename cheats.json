@@ -1,41 +1,42 @@
 [
   {
-    "name": "Pulse Visual",
-    "game": "Minecraft",
-    "file": "Pulse-Visual.jar",
-    "image": "pl.png",
+    "name": "Spectral Aim Pro",
+    "game": "Counter-Strike 2",
+    "file": "spectral-aim-pro.jar",
+    "image": "cs2.jpg",
+    "logo": "cs2-logo.jpg",
     "badge": "UNDETECTED",
-    "version": "1.21.4",
+    "version": "v2.4.1",
+    "type": "EXTERNAL",
+    "status": "WORKING",
+    "description": "Мощный внешний чит для CS2 с продвинутым аймботом и ESP. Не требует прав администратора.",
     "features": [
-      "мод открывает доступ к мощному набору функций, которые выводят комфорт и стиль игры на новый уровень.",
-      "мод полностью совместим с популярными анти-чит системами на серверах.",
-      "Выбирай: сочный HD-дизайн клиента или мрачная классика Minecraft."
-    ]
-  },
-  {
-    "name": "Delta Client",
-    "game": "Minecraft",
-    "file": "ссылка на скачиванеи.txt",
-    "image": "delta.png",
-    "badge": "HOT",
-    "version": "v1.16.5",
-    "features": [
-      "Инструкция",
-      "внутри",
-      "архива"
+      "Aimbot с настройкой FOV и smooth",
+      "ESP — скелет, здоровье, дистанция",
+      "No-recoil + No-spread",
+      "Triggerbot с задержкой",
+      "Radar hack",
+      "Bhop assist"
+    ],
+    "screenshots": ["cs2-1.jpg", "cs2-2.jpg", "cs2-3.jpg"],
+    "install": [
+      {
+        "title": "Отключи антивирус",
+        "desc": "Добавь папку с файлом в исключения Windows Defender или временно отключи антивирус."
+      },
+      {
+        "title": "Запусти игру",
+        "desc": "Сначала запусти CS2 и дождись главного меню."
+      },
+      {
+        "title": "Запусти чит от администратора",
+        "desc": "ПКМ по файлу → Запуск от имени администратора."
+      },
+      {
+        "title": "Дождись инжекции",
+        "desc": "В консоли чита появится надпись INJECTED. Нажми INSERT для открытия меню.",
+        "code": "> INJECTED SUCCESSFULLY"
+      }
     ]
   }
 ]
-{
-    "name": "Celestial Client",
-    "game": "Minecraft",
-    "file": "ссылка на скачиванеи целки.txt",
-    "image": "delta.png",
-    "badge": "UNDETECTED",
-    "version": "v1.16.5",
-    "features": [
-      "ЭТО КРЯК НУЖНО ОФФНУТЬ АНТИВИРУС",
-      "красивый лоадер",
-      "стабильно обновляется"
-    ]
-  }
